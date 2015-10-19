@@ -1,0 +1,29 @@
+#!/bin/bash
+
+d=$(date)
+
+usage ()
+{
+	echo "Usage:"
+	echo "  grep for string:    $0 -g <string>"
+	echo "  reset:              $0 -r"
+}
+
+if [ -z $1 ]
+then
+	echo "$d"
+	grep "Failed password for root" /var/log/secure | awk '{print $11}' | sort | uniq -c
+else
+	if [ "-g" = $1 ] && [ -n $2 ]
+	then
+		grep $2 /var/log/secure
+	elif [ "-r" = $1 ]
+	then
+		echo "$d RESET" >> /var/log/secure
+		cp -f /var/log/secure /var/log/secure.bak
+		echo "$d RESET" > /var/log/secure
+		echo "$d RESET"
+	else
+		usage
+	fi
+fi

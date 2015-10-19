@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+#
+# Message of the Day filename
+MOTD="/etc/motd"
+
+# Text Color Variables
+BLK="\033[00;30m"    # BLACK
+R="\033[00;31m"      # RED
+GRN="\033[00;32m"    # GREEN
+BR="\033[00;33m"     # BROWN
+BL="\033[00;34m"     # BLUW
+P="\033[00;35m"      # PURPLE
+C="\033[00;36m"      # CYAN
+LtG="\033[00;37m"    # LIGHT GRAY
+
+DkG="\033[01;30m"    # DARK GRAY
+LtR="\033[01;31m"    # LIGHT RED
+LtGRN="\033[01;32m"  # LIGHT GREEN
+Y="\033[01;33m"      # YELLOW
+LtBL="\033[01;34m"   # LIGHT BLUE
+LtP="\033[01;35m"    # LIGHT PURPLE
+LtC="\033[01;36m"    # LIGHT CYAN
+W="\033[01;37m"      # WHITE
+
+RESET="\033[0m"
+
+clear > $MOTD        # removes all text from /etc/motd
+
+
+echo -e "" >> $MOTD
+echo -e "" >> $MOTD
+echo -e $LtC '                    ''  ________             .__.__  .__         _________' >> $MOTD
+echo -e $LtC '                    '' /  _____/  ___________|__|  | |  | _____  \_   ___ \_____    ____   ____   ____' >> $MOTD
+echo -e $LtC '                    ''/   \  ___ /  _ \_  __ \  |  | |  | \__  \ /    \  \/\__  \  /    \ /  _ \ /    \' >> $MOTD
+echo -e $LtC '                    ''\    \_\  (  <_> )  | \/  |  |_|  |__/ __ \\\     \____/ __ \|   |  (  <_> )   |  \' >> $MOTD
+echo -e $LtC '                    '' \______  /\____/|__|  |__|____/____(____  /\______  (____  /___|  /\____/|___|  /' >> $MOTD
+echo -e $LtC '                    ''        \/                               \/        \/     \/     \/            \/' >> $MOTD
+echo -e "" >> $MOTD
+echo -e $C '                      '"                                Way of the Beast" $RESET >> $MOTD
+echo -e "" >> $MOTD
+echo -e "" >> $MOTD
