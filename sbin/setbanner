@@ -3,6 +3,7 @@
 #
 # Message of the Day filename
 MOTD="/etc/motd"
+BANNER_DIR="/root/sbin"
 
 # Text Color Variables
 BLK="\033[00;30m"    # BLACK
@@ -35,14 +36,14 @@ usage ()
 if [ -z "$1" ]; then
 	usage
 else
-	if [ -e "./$1.banner" ]; then
+    if [ "-l" = "$1" ]; then
+        ls -1 $BANNER_DIR/*.banner | awk -F/ '{print $NF}' | awk -F. '{print $1}' 
+	elif [ -e "$BANNER_DIR/$1.banner" ]; then
 		rm -f ./banner
-		ln -s $1.banner banner
-		#clear > $MOTD
-		#source $1.banner
+		ln -s "$BANNER_DIR/$1.banner" "$BANNER_DIR/banner"
 		echo "OK"
 	else
-		echo "FAILED: $1.banner not found."
+		echo "FAILED: $BANNER_DIR/$1.banner not found."
 		usage
 	fi
 fi
