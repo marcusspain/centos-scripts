@@ -30,6 +30,7 @@ usage ()
 {
 	echo "Usage:"
 	echo "	$0 <banner-name>       (without .banner extention)"
+    echo "  $0 -l                  prints a list of existing banners"
 }
 
 
