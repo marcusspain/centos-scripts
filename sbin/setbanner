@@ -28,9 +28,9 @@ RESET="\033[0m"
 
 usage ()
 {
-	echo "Usage:"
-	echo "	$0 <banner-name>       (without .banner extention)"
-    echo "  $0 -l                  prints a list of existing banners"
+    echo "Usage:"
+    echo "    $0 <banner-name>       (without .banner extention)"
+    echo "    $0 -l                  prints a list of existing banners"
 }
 
 
@@ -38,7 +38,8 @@ if [ -z "$1" ]; then
 	usage
 else
     if [ "-l" = "$1" ]; then
-        ls -1 $BANNER_DIR/*.banner | awk -F/ '{print $NF}' | awk -F. '{print $1}' 
+        echo "Available Banners:"
+        ls -1 $BANNER_DIR/*.banner | awk -F/ '{print $NF}' | awk -F. '{print "    "$1}' 
 	elif [ -e "$BANNER_DIR/$1.banner" ]; then
 		rm -f ./banner
 		ln -s "$BANNER_DIR/$1.banner" "$BANNER_DIR/banner"
