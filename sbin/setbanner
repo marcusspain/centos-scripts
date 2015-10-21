@@ -41,7 +41,7 @@ else
         echo "Available Banners:"
         ls -1 $BANNER_DIR/*.banner | awk -F/ '{print $NF}' | awk -F. '{print "    "$1}' 
 	elif [ -e "$BANNER_DIR/$1.banner" ]; then
-		rm -f ./banner
+		rm -f $BANNER_DIR/banner
 		ln -s "$BANNER_DIR/$1.banner" "$BANNER_DIR/banner"
 		echo "OK"
 	else
