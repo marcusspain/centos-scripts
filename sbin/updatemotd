@@ -31,4 +31,4 @@ source $BANNER_DIR/banner
 
 sed -i "$HEADER_HEIGHT,100d" /etc/motd
 
-systemstats
+/root/sbin/systemstats
