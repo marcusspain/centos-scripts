@@ -7,12 +7,15 @@ usage ()
 	echo "Usage:"
 	echo "  grep for string:    $0 -g <string>"
 	echo "  reset:              $0 -r"
+	echo "  list DROPs			$0 -l"
 }
 
 if [ -z $1 ]
 then
 	echo "$d"
 	grep "Failed password for root" /var/log/secure | awk '{print $11}' | sort | uniq -c
+	rows=$(iptables -L -n | grep DROP | wc -l)
+	echo "IPTables is has $rows DROPs"
 else
 	if [ "-g" = $1 ] && [ -n $2 ]
 	then
@@ -23,6 +26,12 @@ else
 		cp -f /var/log/secure /var/log/secure.bak
 		echo "$d RESET" > /var/log/secure
 		echo "$d RESET"
+		rows=$(iptables -L -n | grep DROP | wc -l)
+		echo "IPTables is has $rows DROPs"
+	elif [ "-l" = $1 ]; then
+		iptables -L -n | grep DROP | awk '{print "    "$4}' | sort
+		rows=$(iptables -L -n | grep DROP | wc -l)
+		echo "IPTables is has $rows DROPs"
 	else
 		usage
 	fi
