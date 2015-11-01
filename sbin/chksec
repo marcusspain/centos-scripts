@@ -7,7 +7,10 @@ usage ()
 	echo "Usage:"
 	echo "  grep for string:    $0 -g <string>"
 	echo "  reset:              $0 -r"
-	echo "  list DROPs			$0 -l"
+	echo "  list DROPs:         $0 -l"
+	echo "  IPTables save:      $0 -s"
+	echo "  IPTables flush:     $0 -d"
+	echo "  IPTables restart:   $0 -u"
 }
 
 if [ -z $1 ]
@@ -32,6 +35,14 @@ else
 		iptables -L -n | grep DROP | awk '{print "    "$4}' | sort
 		rows=$(iptables -L -n | grep DROP | wc -l)
 		echo "IPTables is has $rows DROPs"
+	elif [ "-s" = $1 ]; then
+		service iptables save
+	elif [ "-d" = $1 ]; then
+		iptables -F
+		rows=$(iptables -L -n | grep DROP | wc -l)
+		echo "IPTables is has $rows DROPs"
+	elif [ "-u" = $1 ]; then
+		service iptables restart
 	else
 		usage
 	fi
